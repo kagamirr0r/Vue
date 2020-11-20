@@ -9,6 +9,11 @@ export default defineComponent({
     func: {
       type: String,
       required: false
+    },
+  },
+  setup(props){
+    return{
+      props,
     }
   }
 })

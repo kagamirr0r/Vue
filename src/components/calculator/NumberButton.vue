@@ -4,18 +4,17 @@
 
 <script>
 import { defineComponent } from 'vue';
-
 export default defineComponent({
   props: {
     number: {
       type: Number,
       default: 0,
-      require: true
-    }
+      required: true
+    },
   },
-  setup(){
+  setup(props){
     return{
-      number,
+      props,
     }
   }
 })
