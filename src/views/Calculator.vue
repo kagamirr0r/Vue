@@ -11,11 +11,12 @@
       <FunctionButton func="-"/>
       <FunctionButton func="C"/>
     </div>
-    <div>
-      <NumberButton :number="0"/>
+    <div class="row" v-for="row in rows" :key="row">
+      <NumberButton v-for="number in row" :key="number" :number="number"/>
     </div>
     <div class="row">
       <FunctionButton :func="'='"/>
+      <NumberButton :number="0"/>
     </div>
   </div>
 </template>
