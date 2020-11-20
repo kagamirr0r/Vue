@@ -21,7 +21,6 @@ export default defineComponent({
       default: 'defalut msg'
     },
   },
-  // emits: ['rewrite'],
   setup(props: Props, context: SetupContext){
     const changeMsg = (e: any) => {
       context.emit('rewrite',e)
