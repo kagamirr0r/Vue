@@ -1,9 +1,13 @@
 <template>
-  <button type="button">{{ number }}</button>
+  <button type="button" @click="inputNumber">{{ number }}</button>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { defineComponent, SetupContext } from 'vue';
+
+type Props = {
+  number: number;
+}
 export default defineComponent({
   props: {
     number: {
@@ -12,9 +16,13 @@ export default defineComponent({
       required: true
     },
   },
-  setup(props){
+  setup(props: Props, context: SetupContext){
+    const inputNumber = () => {
+      context.emit('input-number',props.number)
+    }
     return{
       props,
+      inputNumber
     }
   }
 })

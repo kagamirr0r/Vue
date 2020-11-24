@@ -1,9 +1,14 @@
 <template>
-  <button type="button">{{ func }}</button>
+  <button type="button" @click="igniteFunction">{{ func }}</button>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { defineComponent, SetupContext } from 'vue';
+
+type Props = {
+  func: string;
+}
+
 export default defineComponent({
   props: {
     func: {
@@ -11,9 +16,13 @@ export default defineComponent({
       required: false
     },
   },
-  setup(props){
+  setup(props: Props, context: SetupContext){
+    const igniteFunction = () => {
+      context.emit('ignite-function',props.func)
+    }
     return{
       props,
+      igniteFunction
     }
   }
 })
