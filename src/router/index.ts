@@ -19,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/calculator',
     name: 'Calculator',
     component: () => import('../views/containers/Calculator.vue')
+  },
+  {
+    path: '/api',
+    name: 'Api',
+    component: () => import('../views/containers/Api.vue')
   }
 ]
 
