@@ -9,12 +9,6 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 
-type Props = {
-  memory: number;
-  func: string;
-  type: number;
-}
-
 export default defineComponent ({
   props: {
     memory: {
@@ -27,7 +21,7 @@ export default defineComponent ({
       type: Number
     }
   },
-  setup(props: Props){
+  setup(props){
     const hasMemory = computed(() => props.memory !== null)
     return {
       hasMemory,

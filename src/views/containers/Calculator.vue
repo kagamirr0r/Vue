@@ -25,9 +25,9 @@
 
 <script lang="ts">
   import { defineComponent, reactive, toRefs, ref } from 'vue';
-  import CalcDisplay from '@/components/calculator/CalcDisplay.vue';
-  import FunctionButton from '@/components/calculator/FunctionButton.vue';
-  import NumberButton from '@/components/calculator/NumberButton.vue';
+  import CalcDisplay from '@/views/presentationals/components/calculator/CalcDisplay.vue';
+  import FunctionButton from '@/views/presentationals/components/calculator/FunctionButton.vue';
+  import NumberButton from '@/views/presentationals/components/calculator/NumberButton.vue';
   export default defineComponent({
     components: {
       CalcDisplay,
@@ -35,7 +35,6 @@
       NumberButton
     },
     setup(){
-
       type State = {
         memory: number | null;
         func: string | null;

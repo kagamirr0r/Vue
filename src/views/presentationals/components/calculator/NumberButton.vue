@@ -16,7 +16,7 @@ export default defineComponent({
       required: true
     },
   },
-  setup(props: Props, context: SetupContext){
+  setup(props, context: SetupContext){
     const inputNumber = () => {
       context.emit('input-number',props.number)
     }

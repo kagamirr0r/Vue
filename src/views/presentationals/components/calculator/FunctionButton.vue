@@ -5,10 +5,6 @@
 <script lang="ts">
 import { defineComponent, SetupContext } from 'vue';
 
-type Props = {
-  func: string;
-}
-
 export default defineComponent({
   props: {
     func: {
@@ -16,7 +12,7 @@ export default defineComponent({
       required: false
     },
   },
-  setup(props: Props, context: SetupContext){
+  setup(props, context: SetupContext){
     const igniteFunction = () => {
       context.emit('ignite-function',props.func)
     }

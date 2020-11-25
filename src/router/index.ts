@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/containers/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -13,12 +13,12 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/About.vue')
+    component: () => import('../views/containers/About.vue')
   },
   {
     path: '/calculator',
     name: 'Calculator',
-    component: () => import('../views/Calculator.vue')
+    component: () => import('../views/containers/Calculator.vue')
   }
 ]
 
