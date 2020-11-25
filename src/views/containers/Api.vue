@@ -1,4 +1,10 @@
 <template>
+  <section v-if="errored">
+    <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
+  </section>
+  <div v-show="loading">
+    Loading...
+  </div>
   <div
   class="currency"
   v-for="currency in info"
@@ -13,28 +19,40 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, ref, reactive, toRefs } from 'vue';
 import axios from 'axios';
 export default defineComponent({
   setup(){
-    const info: any = ref(null);
-    const errored = ref(false);
-    const loading = ref(true);
+    // const info: any = ref(null);
+    // const errored = ref(false);
+    // const loading = ref(true);
+
+    interface State {
+      info: any;
+      errored: boolean;
+      loading: boolean;
+    }
+
+    const state = reactive<State>({
+      info: null,
+      errored: false,
+      loading: true
+    })
     onMounted(() => {
       axios
         .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-        .then(response => (info.value = response.data.bpi))
+        .then(response => (state.info = response.data.bpi))
         .catch(error => {
           console.log(error);
-          errored.value = true;
+          state.errored = true;
           })
-        .finally(() => loading.value = false)
+        .finally(() => state.loading = false)
     })
     const currencydecimal = (value: number) => {
       return value.toFixed(2);
     }
     return{
-      info,
+      ...toRefs(state),
       currencydecimal
     }
   },
