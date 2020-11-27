@@ -4,4 +4,12 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-createApp(App).use(router).use(VueAxios,axios).mount('#app')
+import { calcKey, createCalcState } from '@/logics/calclator.ts'
+
+const app = createApp(App)
+app.use(router)
+app.use(VueAxios,axios)
+app.provide(calcKey, createCalcState())
+app.mount('#app')
+
+
