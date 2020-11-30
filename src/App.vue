@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/calculator">Calculator</router-link> |
-    <router-link to="/api">API</router-link>
+    <router-link to="/api">API</router-link> |
+    <router-link to="/counter">Counter</router-link>
   </div>
   <router-view/>
 </template>

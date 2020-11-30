@@ -24,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/api',
     name: 'Api',
     component: () => import('../views/containers/Api.vue')
+  },
+  {
+    path: '/counter',
+    name: 'Counter',
+    component: () => import('../views/containers/Counter.vue')
   }
 ]
 

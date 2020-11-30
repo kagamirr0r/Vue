@@ -1,7 +1,13 @@
-import { createApp } from 'vue'
+import { createApp, ref } from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-createApp(App).use(router).use(VueAxios,axios).mount('#app')
+const key = 'count'
+const value = ref(0)
+
+const app = createApp(App)
+app.provide(key,value)
+app.use(router).use(VueAxios,axios)
+app.mount('#app')
