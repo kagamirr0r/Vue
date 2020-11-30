@@ -1,9 +1,10 @@
 <template>
   <div>
-    {{ count }}
+    <p>{{ count }}</p>
+    <button @click="plusOne">+</button>
+    <button @click="minusOne">-</button>
+    <p>This counter is global state.</p>
   </div>
-  <button @click="plusOne">+</button>
-  <button @click="minusOne">-</button>
 </template>
 
 <script lang="ts">

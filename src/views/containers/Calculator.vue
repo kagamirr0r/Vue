@@ -1,6 +1,6 @@
 <template>
   <div class="calculator">
-    <!--<div class="row">
+    <div class="row">
       <CalcDisplay
         :memory="memory"
         :func="func"
@@ -19,8 +19,7 @@
       <FunctionButton :func="'='" @ignite-function="equal"/>
       <NumberButton :number="0" @input-number="inputNumber"/>
       <FunctionButton func="C" @ignite-function="clear"/>
-    </div>-->
-      <button @click="store"></button>
+    </div>
   </div>
 </template>
 
@@ -31,24 +30,20 @@
   import NumberButton from '@/views/presentationals/components/calculator/NumberButton.vue';
   import { useCalclator } from '@/logics/calclator.ts';
   export default defineComponent({
-    // components: {
-    //   CalcDisplay,
-    //   FunctionButton,
-    //   NumberButton
-    // },
+    components: {
+      CalcDisplay,
+      FunctionButton,
+      NumberButton
+    },
     setup(){
-      const { store } = useCalclator();
-      const consol = () => {
-        console.log(store.)
-      }
+      const { state, rows,inputNumber,inputFunction,clear,equal } = useCalclator();
       return {
-        // ...toRefs(state),
-        // rows,
-        // inputNumber,
-        // inputFunction,
-        // clear,
-        // equal
-        consol,
+        ...toRefs(state),
+        rows,
+        inputNumber,
+        inputFunction,
+        clear,
+        equal
       }
     },
   })

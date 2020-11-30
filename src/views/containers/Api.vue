@@ -16,12 +16,14 @@
     <span v-html="currency.symbol"></span>{{ currencydecimal(currency.rate_float) }}
   </span>
   </div>
+  <p>This API being communicated by axios.</p>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, reactive, toRefs } from 'vue';
+import { defineComponent, onMounted, ref, reactive, toRefs, inject, computed } from 'vue';
 import axios from 'axios';
 export default defineComponent({
+
   setup(){
     // const info: any = ref(null);
     // const errored = ref(false);
@@ -38,6 +40,14 @@ export default defineComponent({
       errored: false,
       loading: true
     })
+
+    // const displayCount = computed(() => {
+    //   const count: any = inject('count')
+    // })
+
+    const count: any = inject('count')
+
+
     onMounted(() => {
       axios
         .get('https://api.coindesk.com/v1/bpi/currentprice.json')
@@ -53,7 +63,8 @@ export default defineComponent({
     }
     return{
       ...toRefs(state),
-      currencydecimal
+      currencydecimal,
+      count
     }
   },
 })
