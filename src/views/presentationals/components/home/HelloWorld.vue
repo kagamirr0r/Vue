@@ -10,7 +10,7 @@ import { defineComponent, SetupContext } from 'vue';
 
 type Props = {
   msg: string;
-}
+};
 
 export default defineComponent({
   props: {
@@ -23,10 +23,10 @@ export default defineComponent({
   setup(props: Props, context: SetupContext){
     const changeMsg = (e: any) => {
       context.emit('rewrite',e)
-    }
+    };
     return {
     changeMsg,
-    }
+    };
   }
 });
 </script>

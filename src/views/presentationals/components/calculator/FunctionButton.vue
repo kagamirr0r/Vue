@@ -15,11 +15,11 @@ export default defineComponent({
   setup(props, context: SetupContext){
     const igniteFunction = () => {
       context.emit('ignite-function',props.func)
-    }
+    };
     return{
       props,
       igniteFunction
-    }
+    };
   }
-})
+});
 </script>

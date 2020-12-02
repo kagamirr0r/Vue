@@ -16,14 +16,14 @@ export default defineComponent({
     HelloWorld,
   },
   setup() {
-    const message = ref('Hello Vue.js')
+    const message = ref('Hello Vue.js');
     const changeMsg = (e: any) => {
-      message.value = e.target.value
-    }
+      message.value = e.target.value;
+    };
     return {
       message,
       changeMsg,
-    }
+    };
   },
 });
 </script>

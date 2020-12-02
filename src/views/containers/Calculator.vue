@@ -44,7 +44,7 @@
         inputFunction,
         clear,
         equal
-      }
+      };
     },
-  })
+  });
 </script>

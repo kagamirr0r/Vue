@@ -25,28 +25,24 @@ import axios from 'axios';
 export default defineComponent({
 
   setup(){
+
+    //refを使う場合
     // const info: any = ref(null);
     // const errored = ref(false);
     // const loading = ref(true);
 
+     //reactiveを使う場合
     interface State {
       info: any;
       errored: boolean;
       loading: boolean;
-    }
+    };
 
     const state = reactive<State>({
       info: null,
       errored: false,
       loading: true
-    })
-
-    // const displayCount = computed(() => {
-    //   const count: any = inject('count')
-    // })
-
-    const count: any = inject('count')
-
+    });
 
     onMounted(() => {
       axios
@@ -57,17 +53,16 @@ export default defineComponent({
           state.errored = true;
           })
         .finally(() => state.loading = false)
-    })
+    });
     const currencydecimal = (value: number) => {
       return value.toFixed(2);
-    }
+    };
     return{
       ...toRefs(state),
       currencydecimal,
-      count
-    }
+    };
   },
-})
+});
 </script>
 
 <style>

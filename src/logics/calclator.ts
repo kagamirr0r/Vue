@@ -11,32 +11,32 @@ export const useCalclator = () => {
     memory: null,
     func: null,
     inputValue: 0
-  })
+  });
 
-  const isError = ref(false)
+  const isError = ref(false);
 
-  const rows = [[7,8,9],[4,5,6],[1,2,3]]
+  const rows = [[7,8,9],[4,5,6],[1,2,3]];
 
   const error = () => {
     state.memory = null;
     state.func = null;
     state.inputValue = "ERROR";
     isError.value = true;
-  }
+  };
 
   const clear = () => {
     state.memory = null;
     state.func = null;
     state.inputValue = 0;
     isError.value = false;
-  }
+  };
 
   const calc = (memory: number | null ,input: any, func: string | null ): number => {
     if (memory === null) {
       return input
-    }
+    };
 
-    let val = NaN
+    let val = NaN;
     switch(func) {
       case '+':
       case '-': {
@@ -52,59 +52,59 @@ export const useCalclator = () => {
         val = memory / input;
         break;
       }
-    }
+    };
     if (!Number.isSafeInteger(val)){
-      error()
-      return NaN
-    }
+      error();
+      return NaN;
+    };
     return val
-  }
+  };
 
   const inputNumber = (number: number) => {
     if (isError.value) {
-      console.log("Error occured")
-      return
-    }
+      console.log("Error occured");
+      return;
+    };
 
     if (state.inputValue === 0) {
-      state.inputValue = number
-      return
-    }
+      state.inputValue = number;
+      return;
+    };
 
-    const parsed = parseInt(state.inputValue.toString() + number.toString())
+    const parsed = parseInt(state.inputValue.toString() + number.toString());
 
     if (Number.isSafeInteger(parsed)) {
-      state.inputValue = parsed
-    }
-  }
+      state.inputValue = parsed;
+    };
+  };
 
   const inputFunction = (func: string) => {
     if (isError.value) {
-      return
-    }
+      return;
+    };
 
-    const val = calc(state.memory, state.inputValue, func)
+    const val = calc(state.memory, state.inputValue, func);
 
     if (!isNaN(val)) {
-      state.memory = val
-      state.func = func
-      state.inputValue = 0
-    }
+      state.memory = val;
+      state.func = func;
+      state.inputValue = 0;
+    };
 
-  }
+  };
   const equal = () => {
     if (isError.value || state.memory === null || state.func === null) {
-      return
-    }
+      return;
+    };
 
-    const val = calc(state.memory, state.inputValue, state.func)
+    const val = calc(state.memory, state.inputValue, state.func);
 
     if (!isNaN(val)){
       state.memory = null
       state.func = null
       state.inputValue = val
-    }
-  }
+    };
+  };
   return {
     state,
     rows,
@@ -112,5 +112,5 @@ export const useCalclator = () => {
     inputNumber,
     inputFunction,
     equal
-  }
-}
+  };
+};

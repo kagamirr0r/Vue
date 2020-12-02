@@ -12,14 +12,14 @@ import { defineComponent,inject } from 'vue';
 
 export default defineComponent({
   setup(){
-    const count: any = inject('count')
-    const plusOne = () => count.value++
-    const minusOne = () => count.value--
+    const count: any = inject('count');
+    const plusOne = () => count.value++;
+    const minusOne = () => count.value--;
     return {
       count,
       plusOne,
       minusOne
-    }
+    };
   }
-})
+});
 </script>

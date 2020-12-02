@@ -22,12 +22,12 @@ export default defineComponent ({
     }
   },
   setup(props){
-    const hasMemory = computed(() => props.memory !== null)
+    const hasMemory = computed(() => props.memory !== null);
     return {
       hasMemory,
-    }
+    };
   }
-})
+});
 </script>
 
 <style scoped>

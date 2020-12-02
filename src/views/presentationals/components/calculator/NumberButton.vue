@@ -7,7 +7,7 @@ import { defineComponent, SetupContext } from 'vue';
 
 type Props = {
   number: number;
-}
+};
 export default defineComponent({
   props: {
     number: {
@@ -19,11 +19,11 @@ export default defineComponent({
   setup(props, context: SetupContext){
     const inputNumber = () => {
       context.emit('input-number',props.number)
-    }
+    };
     return{
       props,
       inputNumber
-    }
+    };
   }
-})
+});
 </script>
