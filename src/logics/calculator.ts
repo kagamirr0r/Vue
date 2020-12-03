@@ -2,9 +2,11 @@ import { reactive, ref } from 'vue';
 
 type State = {
   memory: number | null;
-  func: string | null;
+  func: '+' | '-' | '×' | '÷' | null;
   inputValue: number | string;
 };
+
+type Func = '+' | '-' | '×' | '÷' | null;
 
 export const useCalculator = () => {
   const state = reactive<State>({
@@ -21,25 +23,57 @@ export const useCalculator = () => {
     [1, 2, 3],
   ];
 
-  const error = () => {
+  const error = (): void => {
     state.memory = null;
     state.func = null;
     state.inputValue = 'ERROR';
     isError.value = true;
   };
 
-  const clear = () => {
+  const clear = (): void => {
     state.memory = null;
     state.func = null;
     state.inputValue = 0;
     isError.value = false;
   };
 
-  const calc = (
-    memory: number | null,
-    input: any,
-    func: string | null
-  ): number => {
+  const calcAdd = (memory: number, input: number): number => {
+    const val = memory + input;
+    if (!Number.isSafeInteger(val)) {
+      error();
+      return NaN;
+    }
+    return val;
+  };
+
+  const calcMinus = (memory: number, input: number): number => {
+    const val = memory - input;
+    if (!Number.isSafeInteger(val)) {
+      error();
+      return NaN;
+    }
+    return val;
+  };
+
+  const calcMultiply = (memory: number, input: number): number => {
+    const val = memory * input;
+    if (!Number.isSafeInteger(val)) {
+      error();
+      return NaN;
+    }
+    return val;
+  };
+
+  const calcDivide = (memory: number, input: number): number => {
+    const val = memory / input;
+    if (!Number.isSafeInteger(val)) {
+      error();
+      return NaN;
+    }
+    return val;
+  };
+
+  const calc = (memory: number | null, input: any, func: Func): any => {
     if (memory === null) {
       return input;
     }
@@ -68,7 +102,7 @@ export const useCalculator = () => {
     return val;
   };
 
-  function inputNumber(number: number) {
+  function inputNumber(number: number): void {
     if (isError.value) {
       console.log('Error occured');
       return;
@@ -86,7 +120,7 @@ export const useCalculator = () => {
     }
   }
 
-  const inputFunction = (func: string) => {
+  const inputFunction = (func: Func): void => {
     if (isError.value) {
       return;
     }
@@ -99,7 +133,7 @@ export const useCalculator = () => {
       state.inputValue = 0;
     }
   };
-  const equal = () => {
+  const equal = (): void => {
     if (isError.value || state.memory === null || state.func === null) {
       return;
     }
