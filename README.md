@@ -1,5 +1,8 @@
 # sample-vue3
 
+## Node Version
+v15.2.1
+
 ## Project setup
 ```
 npm install
