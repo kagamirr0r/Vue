@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, ref } from 'vue';
+  import { defineComponent, toRefs } from 'vue';
   import CalcDisplay from '@/views/presentationals/components/calculator/CalcDisplay.vue';
   import FunctionButton from '@/views/presentationals/components/calculator/FunctionButton.vue';
   import NumberButton from '@/views/presentationals/components/calculator/NumberButton.vue';
-  import { useCalclator } from '@/logics/calclator.ts';
+  import { useCalculator } from '@/logics/calculator.ts';
   export default defineComponent({
     components: {
       CalcDisplay,
@@ -36,7 +36,7 @@
       NumberButton
     },
     setup(){
-      const { state, rows,inputNumber,inputFunction,clear,equal } = useCalclator();
+      const { state, rows,inputNumber,inputFunction,clear,equal } = useCalculator();
       return {
         ...toRefs(state),
         rows,

@@ -6,7 +6,7 @@ type State = {
   inputValue: number | string;
 }
 
-export const useCalclator = () => {
+export const useCalculator = () => {
   const state = reactive<State>({
     memory: null,
     func: null,
@@ -34,7 +34,7 @@ export const useCalclator = () => {
   const calc = (memory: number | null ,input: any, func: string | null ): number => {
     if (memory === null) {
       return input
-    };
+    }
 
     let val = NaN;
     switch(func) {
@@ -52,11 +52,11 @@ export const useCalclator = () => {
         val = memory / input;
         break;
       }
-    };
+    }
     if (!Number.isSafeInteger(val)){
       error();
       return NaN;
-    };
+    }
     return val
   };
 
@@ -64,24 +64,24 @@ export const useCalclator = () => {
     if (isError.value) {
       console.log("Error occured");
       return;
-    };
+    }
 
     if (state.inputValue === 0) {
       state.inputValue = number;
       return;
-    };
+    }
 
     const parsed = parseInt(state.inputValue.toString() + number.toString());
 
     if (Number.isSafeInteger(parsed)) {
       state.inputValue = parsed;
-    };
+    }
   };
 
   const inputFunction = (func: string) => {
     if (isError.value) {
       return;
-    };
+    }
 
     const val = calc(state.memory, state.inputValue, func);
 
@@ -89,13 +89,13 @@ export const useCalclator = () => {
       state.memory = val;
       state.func = func;
       state.inputValue = 0;
-    };
+    }
 
   };
   const equal = () => {
     if (isError.value || state.memory === null || state.func === null) {
       return;
-    };
+    }
 
     const val = calc(state.memory, state.inputValue, state.func);
 
@@ -103,7 +103,7 @@ export const useCalclator = () => {
       state.memory = null
       state.func = null
       state.inputValue = val
-    };
+    }
   };
   return {
     state,
