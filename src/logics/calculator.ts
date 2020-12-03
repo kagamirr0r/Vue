@@ -4,23 +4,27 @@ type State = {
   memory: number | null;
   func: string | null;
   inputValue: number | string;
-}
+};
 
 export const useCalculator = () => {
   const state = reactive<State>({
     memory: null,
     func: null,
-    inputValue: 0
+    inputValue: 0,
   });
 
   const isError = ref(false);
 
-  const rows = [[7,8,9],[4,5,6],[1,2,3]];
+  const rows = [
+    [7, 8, 9],
+    [4, 5, 6],
+    [1, 2, 3],
+  ];
 
   const error = () => {
     state.memory = null;
     state.func = null;
-    state.inputValue = "ERROR";
+    state.inputValue = 'ERROR';
     isError.value = true;
   };
 
@@ -31,17 +35,21 @@ export const useCalculator = () => {
     isError.value = false;
   };
 
-  const calc = (memory: number | null ,input: any, func: string | null ): number => {
+  const calc = (
+    memory: number | null,
+    input: any,
+    func: string | null
+  ): number => {
     if (memory === null) {
-      return input
+      return input;
     }
 
     let val = NaN;
-    switch(func) {
+    switch (func) {
       case '+':
       case '-': {
         const bias = func === '+' ? 1 : -1;
-        val = memory + (bias * input);
+        val = memory + bias * input;
         break;
       }
       case '×': {
@@ -53,16 +61,16 @@ export const useCalculator = () => {
         break;
       }
     }
-    if (!Number.isSafeInteger(val)){
+    if (!Number.isSafeInteger(val)) {
       error();
       return NaN;
     }
-    return val
+    return val;
   };
 
-  const inputNumber = (number: number) => {
+  function inputNumber(number: number) {
     if (isError.value) {
-      console.log("Error occured");
+      console.log('Error occured');
       return;
     }
 
@@ -76,7 +84,7 @@ export const useCalculator = () => {
     if (Number.isSafeInteger(parsed)) {
       state.inputValue = parsed;
     }
-  };
+  }
 
   const inputFunction = (func: string) => {
     if (isError.value) {
@@ -90,7 +98,6 @@ export const useCalculator = () => {
       state.func = func;
       state.inputValue = 0;
     }
-
   };
   const equal = () => {
     if (isError.value || state.memory === null || state.func === null) {
@@ -99,10 +106,10 @@ export const useCalculator = () => {
 
     const val = calc(state.memory, state.inputValue, state.func);
 
-    if (!isNaN(val)){
-      state.memory = null
-      state.func = null
-      state.inputValue = val
+    if (!isNaN(val)) {
+      state.memory = null;
+      state.func = null;
+      state.inputValue = val;
     }
   };
   return {
@@ -111,6 +118,6 @@ export const useCalculator = () => {
     clear,
     inputNumber,
     inputFunction,
-    equal
+    equal,
   };
 };

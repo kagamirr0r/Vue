@@ -8,6 +8,6 @@ const key = 'count';
 const value = ref(0);
 
 const app = createApp(App);
-app.provide(key,value);
-app.use(router).use(VueAxios,axios);
-app.mount('#app');
+  app.provide(key,value);
+  app.use(router).use(VueAxios,axios);
+  app.mount('#app');
