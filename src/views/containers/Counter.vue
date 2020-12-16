@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ count }}</p>
+    <p>{{ currentCount }}</p>
     <button @click="plusOne">+</button>
     <button @click="minusOne">-</button>
     <p>This counter is global state.</p>
@@ -8,15 +8,19 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, inject } from 'vue';
+  import { defineComponent } from 'vue';
+  import { useCurrentCount } from '@/models/global/current-count.ts';
+
+  let { currentCount } = useCurrentCount();
 
   export default defineComponent({
     setup() {
-      const count: any = inject('count');
-      const plusOne = () => count.value++;
-      const minusOne = () => count.value--;
+      // const count: any = inject(keyCurrentCount);
+      // const plusOne = () => currentCount.value++;
+      const plusOne = () => console.log(currentCount);
+      const minusOne = () => currentCount--;
       return {
-        count,
+        currentCount,
         plusOne,
         minusOne,
       };

@@ -1,55 +1,61 @@
 <template>
   <div class="memory">
-    <span class="memory" v-show="hasMemory">{{ memory }}</span>
-    <span class="fuction" v-show="hasMemory">{{ func }}</span>
+    <span v-show="hasMemory" class="memory">{{ memory }}</span>
+    <span v-show="hasMemory" class="fuction">{{ func }}</span>
     <span class="input-value">{{ inputValue }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+  import { defineComponent, computed } from 'vue';
 
-export default defineComponent ({
-  props: {
-    memory: {
-      type: Number
+  export default defineComponent({
+    props: {
+      memory: {
+        type: Number,
+        required: true,
+        default: 0,
+      },
+      func: {
+        type: String,
+        required: true,
+        default: '',
+      },
+      inputValue: {
+        type: Number,
+        required: true,
+        default: 0,
+      },
     },
-    func: {
-      type: String
+    setup(props) {
+      const hasMemory = computed(() => props.memory !== null);
+      return {
+        hasMemory,
+      };
     },
-    inputValue: {
-      type: Number
-    }
-  },
-  setup(props){
-    const hasMemory = computed(() => props.memory !== null);
-    return {
-      hasMemory,
-    };
-  }
-});
+  });
 </script>
 
 <style scoped>
-    .calc-display {
-        position: relative;
-        text-align: right;
-    }
+  .calc-display {
+    position: relative;
+    text-align: right;
+  }
 
-    .memory {
-        color: #9c9c9c;
-        font-size: 1.3rem;
-        font-style: italic;
-    }
+  .memory {
+    color: #9c9c9c;
+    font-size: 1.3rem;
+    font-style: italic;
+  }
 
-    .function {
-        color: #9c9c9c;
-    }
+  .function {
+    color: #9c9c9c;
+  }
 
-    .input-value {
-        background-color: #d8fcff;
-        font-weight: bold;
-        font-size: 2rem;
-        width: 10rem;
-    }
+  .input-value {
+    background-color: #d8fcff;
+    font-weight: bold;
+    font-size: 2rem;
+    width: 10rem;
+  }
 </style>

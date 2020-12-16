@@ -4,10 +4,12 @@ import router from './router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-const key = 'count';
-const value = ref(0);
+import {
+  createCurrentCount,
+  keyCurrentCount,
+} from '@/models/global/current-count';
 
 const app = createApp(App);
-app.provide(key, value);
+app.provide(keyCurrentCount, createCurrentCount());
 app.use(router).use(VueAxios, axios);
 app.mount('#app');

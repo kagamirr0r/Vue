@@ -3,27 +3,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from 'vue';
+  import { defineComponent } from 'vue';
 
-type Props = {
-  number: number;
-};
-export default defineComponent({
-  props: {
-    number: {
-      type: Number,
-      default: 0,
-      required: true
+  type Props = {
+    number: number;
+  };
+  export default defineComponent({
+    props: {
+      number: {
+        type: Number,
+        default: 0,
+        required: true,
+      },
     },
-  },
-  setup(props, context: SetupContext){
-    const inputNumber = () => {
-      context.emit('input-number',props.number)
-    };
-    return{
-      props,
-      inputNumber
-    };
-  }
-});
+    setup(props, context) {
+      const inputNumber = () => {
+        context.emit('input-number', props.number);
+      };
+      return {
+        props,
+        inputNumber,
+      };
+    },
+  });
 </script>

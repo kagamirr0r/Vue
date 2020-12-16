@@ -6,7 +6,7 @@
     </p>
   </section>
   <div v-show="loading">Loading...</div>
-  <div class="currency" v-for="currency in info" :key="currency" v-cloak>
+  <div v-for="currency in info" v-cloak :key="currency" class="currency">
     {{ currency.description }}:
     <span class="lighten">
       <span v-html="currency.symbol"></span
@@ -17,15 +17,7 @@
 </template>
 
 <script lang="ts">
-  import {
-    defineComponent,
-    onMounted,
-    ref,
-    reactive,
-    toRefs,
-    inject,
-    computed,
-  } from 'vue';
+  import { defineComponent, onMounted, reactive, toRefs } from 'vue';
   import axios from 'axios';
   export default defineComponent({
     setup() {
@@ -50,8 +42,8 @@
       onMounted(() => {
         axios
           .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-          .then((response) => (state.info = response.data.bpi))
-          .catch((error) => {
+          .then(response => (state.info = response.data.bpi))
+          .catch(error => {
             console.log(error);
             state.errored = true;
           })

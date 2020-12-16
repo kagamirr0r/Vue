@@ -1,7 +1,7 @@
 # sample-vue3
 
 ## Node Version
-v15.2.1
+v15.4.0
 
 ## Project setup
 ```

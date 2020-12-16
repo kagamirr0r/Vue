@@ -2,16 +2,16 @@ import { reactive, ref } from 'vue';
 
 type State = {
   memory: number | null;
-  func: '+' | '-' | '×' | '÷' | null;
-  inputValue: number | string;
+  func: '+' | '-' | '×' | '÷' | '';
+  inputValue: number | 'ERROR';
 };
 
-type Func = '+' | '-' | '×' | '÷' | null;
+type Func = '+' | '-' | '×' | '÷' | '';
 
 export const useCalculator = () => {
   const state = reactive<State>({
     memory: null,
-    func: null,
+    func: '',
     inputValue: 0,
   });
 
@@ -25,14 +25,14 @@ export const useCalculator = () => {
 
   const error = (): void => {
     state.memory = null;
-    state.func = null;
+    state.func = '';
     state.inputValue = 'ERROR';
     isError.value = true;
   };
 
   const clear = (): void => {
     state.memory = null;
-    state.func = null;
+    state.func = '';
     state.inputValue = 0;
     isError.value = false;
   };
@@ -142,7 +142,7 @@ export const useCalculator = () => {
 
     if (!isNaN(val)) {
       state.memory = null;
-      state.func = null;
+      state.func = '';
       state.inputValue = val;
     }
   };
